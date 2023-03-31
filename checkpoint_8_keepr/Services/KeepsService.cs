@@ -15,6 +15,17 @@ namespace checkpoint_8_keepr.Services
       return keep;
     }
 
+    internal Keep EditKeep(Keep updateData)
+    {
+      Keep original = this.GetOneKeep(updateData.Id);
+      original.Name = updateData.Name != null ? updateData.Name : original.Name;
+      original.Description = updateData.Description != null ? updateData.Description : original.Description;
+      int rowsAffected = _repo.Update(original);
+      if (rowsAffected == 0) throw new Exception($"Could not modify {updateData.Name} @ id {updateData.Id}");
+      if (rowsAffected > 1) throw new Exception($"You just updated {rowsAffected} of recipes into {updateData.Name}");
+      return original;
+    }
+
     internal List<Keep> GetAllKeeps(string id)
     {
       List<Keep> keeps = _repo.GetAll();

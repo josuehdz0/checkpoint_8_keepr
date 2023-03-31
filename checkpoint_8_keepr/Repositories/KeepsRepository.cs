@@ -56,5 +56,18 @@ namespace checkpoint_8_keepr.Repositories
       }, new { id }).FirstOrDefault();
       return keep;
     }
+
+    internal int Update(Keep original)
+    {
+      string sql = @"
+      UPDATE keeps
+      SET
+      name = @name,
+      description = @description
+      WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, original);
+      return rows;
+    }
   }
 }

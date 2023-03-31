@@ -68,6 +68,25 @@ namespace checkpoint_8_keepr.Controllers
     }
 
 
+    [HttpPut("{id}")]
+    [Authorize]
+
+    async public Task<ActionResult<Keep>> EditKeep(int id, [FromBody] Keep updateData)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        updateData.Id = id;
+        Keep keep = _keepsService.EditKeep(updateData);
+        return Ok(keep);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
 
 
 

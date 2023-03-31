@@ -22,5 +22,23 @@ namespace checkpoint_8_keepr.Repositories
       vaultData.Id = id;
       return vaultData;
     }
+
+    internal Vault GetOneVault(int id)
+    {
+      string sql = @"
+      SELECT
+      vlt.*,
+      acct.*
+      FROM vaults vlt
+      JOIN accounts acct ON vlt.creatorId = acct.id
+      WHERE vlt.id = @id;";
+      Vault vault = _db.Query<Vault, Profile, Vault>(sql, (vault, prof) =>
+      {
+        vault.Creator = prof;
+        return vault;
+      }, new { id }).FirstOrDefault();
+      return vault;
+
+    }
   }
 }

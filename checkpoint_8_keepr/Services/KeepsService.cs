@@ -24,13 +24,15 @@ namespace checkpoint_8_keepr.Services
       return $"Deleted {keep.Name}";
     }
 
-    internal Keep EditKeep(Keep updateData)
+    internal Keep EditKeep(Keep updateData, string userId)
     {
       Keep original = this.GetOneKeep(updateData.Id);
+      if (original.CreatorId != userId) throw new Exception("This is not your Keep to Edit");
       original.Name = updateData.Name != null ? updateData.Name : original.Name;
       original.Description = updateData.Description != null ? updateData.Description : original.Description;
       int rowsAffected = _repo.Update(original);
       if (rowsAffected == 0) throw new Exception($"Could not modify {updateData.Name} @ id {updateData.Id}");
+
       if (rowsAffected > 1) throw new Exception($"You just updated {rowsAffected} of recipes into {updateData.Name}");
       return original;
     }

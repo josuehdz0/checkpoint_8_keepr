@@ -77,7 +77,7 @@ namespace checkpoint_8_keepr.Controllers
       {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
         updateData.Id = id;
-        Keep keep = _keepsService.EditKeep(updateData);
+        Keep keep = _keepsService.EditKeep(updateData, userInfo?.Id);
         return Ok(keep);
       }
       catch (Exception e)

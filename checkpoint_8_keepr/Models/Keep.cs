@@ -10,6 +10,7 @@ namespace checkpoint_8_keepr.Models
     public string Img { get; set; }
     public int Views { get; set; }
     public string CreatorId { get; set; }
+    public int Kept { get; set; }
     public Profile Creator { get; set; }
   }
 }

@@ -40,6 +40,21 @@ namespace checkpoint_8_keepr.Repositories
       return keeps;
     }
 
-
+    internal Keep GetOne(int id)
+    {
+      string sql = @"
+      SELECT
+      kp.*,
+      acct.*
+      FROM keeps kp
+      JOIN accounts acct ON kp.creatorId = acct.id
+      WHERE kp.id = @id;";
+      Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
+      {
+        keep.Creator = prof;
+        return keep;
+      }, new { id }).FirstOrDefault();
+      return keep;
+    }
   }
 }

@@ -20,5 +20,12 @@ namespace checkpoint_8_keepr.Services
       List<Keep> keeps = _repo.GetAll();
       return keeps;
     }
+
+    internal Keep GetOneKeep(int id)
+    {
+      Keep keep = _repo.GetOne(id);
+      if (keep == null) throw new Exception("This Keep ain't it");
+      return keep;
+    }
   }
 }

@@ -15,25 +15,6 @@ namespace checkpoint_8_keepr.Controllers
     }
 
 
-    // NOTE this is for getting all Keeps, for later
-
-    [HttpGet]
-
-    async public Task<ActionResult<List<Keep>>> GetAllKeeps()
-    {
-      try
-      {
-        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        List<Keep> keeps = _keepsService.GetAllKeeps(userInfo?.Id);
-        return Ok(keeps);
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
-
-
     [HttpPost]
     [Authorize]
 
@@ -52,6 +33,42 @@ namespace checkpoint_8_keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+
+
+    [HttpGet]
+
+    async public Task<ActionResult<List<Keep>>> GetAllKeeps()
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        List<Keep> keeps = _keepsService.GetAllKeeps(userInfo?.Id);
+        return Ok(keeps);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
+    [HttpGet("{id}")]
+
+    public ActionResult<Keep> FindOneKeep(int id)
+    {
+      try
+      {
+        Keep keep = _keepsService.GetOneKeep(id);
+        return Ok(keep);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
+
 
 
 

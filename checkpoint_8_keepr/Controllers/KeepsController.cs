@@ -87,6 +87,25 @@ namespace checkpoint_8_keepr.Controllers
     }
 
 
+    [HttpDelete("{id}")]
+    [Authorize]
+
+    async public Task<ActionResult<string>> DeleteKeep(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        string keep = _keepsService.DeleteKeep(id, userInfo.Id);
+        return Ok(keep);
+
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
 
 
 

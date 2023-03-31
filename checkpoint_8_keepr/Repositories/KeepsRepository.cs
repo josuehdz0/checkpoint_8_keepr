@@ -57,6 +57,15 @@ namespace checkpoint_8_keepr.Repositories
       return keep;
     }
 
+    internal bool Remove(int id)
+    {
+      string sql = @"
+      DELETE FROM keeps WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, new { id });
+      return rows == 1;
+    }
+
     internal int Update(Keep original)
     {
       string sql = @"

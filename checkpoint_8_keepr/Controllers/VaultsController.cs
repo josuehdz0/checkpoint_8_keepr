@@ -51,6 +51,44 @@ namespace checkpoint_8_keepr.Controllers
     }
 
 
+    [HttpPut("{id}")]
+    [Authorize]
+
+    async public Task<ActionResult<Vault>> EditVault(int id, [FromBody] Vault updateData)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        updateData.Id = id;
+        Vault vault = _vaultsService.EditVault(updateData, userInfo?.Id);
+        return Ok(vault);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
+    [HttpDelete("{id}")]
+    [Authorize]
+
+    async public Task<ActionResult<string>> DeleteVault(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        string vault = _vaultsService.DeleteVault(id, userInfo.Id);
+        return Ok(vault);
+
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
 
 
 

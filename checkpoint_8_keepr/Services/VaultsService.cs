@@ -15,6 +15,32 @@ namespace checkpoint_8_keepr.Services
       return vault;
     }
 
+    internal string DeleteVault(int id, string userId)
+    {
+      Vault vault = this.GetOneVault(id, userId);
+      if (vault.CreatorId != userId) throw new Exception("This is not your Vault to delete goofy");
+      bool result = _repo.Remove(id);
+      if (!result) throw new Exception($"Could not delete Vault with id: {vault.Id}");
+      return $"Deleted {vault.Name}";
+
+    }
+
+    internal Vault EditVault(Vault updateData, string userId)
+    {
+      Vault original = this.GetOneVault(updateData.Id, updateData.CreatorId);
+      if (original.CreatorId != userId) throw new Exception("This is not your Vault to Edit");
+
+      original.Name = updateData.Name != null ? updateData.Name : original.Name;
+      original.IsPrivate = updateData.IsPrivate != null ? updateData.IsPrivate : original.IsPrivate;
+      int rowsAffected = _repo.Update(original);
+
+      if (rowsAffected == 0) throw new Exception($"Could not modify {updateData.Name} @ id {updateData.Id}");
+
+      if (rowsAffected > 1) throw new Exception($"You just updated {rowsAffected} of recipes into {updateData.Name}");
+      return original;
+
+    }
+
     internal Vault GetOneVault(int id, string userId)
     {
       Vault vault = _repo.GetOneVault(id);

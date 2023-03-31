@@ -40,5 +40,27 @@ namespace checkpoint_8_keepr.Repositories
       return vault;
 
     }
+
+    internal bool Remove(int id)
+    {
+      string sql = @"
+      DELETE FROM vaults WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, new { id });
+      return rows == 1;
+    }
+
+    internal int Update(Vault original)
+    {
+      string sql = @"
+      UPDATE vaults
+      SET
+      name = @name,
+      isPrivate = @isPrivate
+      WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, original);
+      return rows;
+    }
   }
 }

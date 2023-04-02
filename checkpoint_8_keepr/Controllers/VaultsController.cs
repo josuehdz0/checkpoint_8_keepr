@@ -6,14 +6,16 @@ namespace checkpoint_8_keepr.Controllers
   {
     private readonly VaultsService _vaultsService;
 
+    private readonly VaultKeepsService _vaultKeepsService;
+
     private readonly Auth0Provider _auth;
 
-    public VaultsController(VaultsService vaultsService, Auth0Provider auth)
+    public VaultsController(VaultsService vaultsService, VaultKeepsService vaultKeepsService, Auth0Provider auth)
     {
       _vaultsService = vaultsService;
+      _vaultKeepsService = vaultKeepsService;
       _auth = auth;
     }
-
 
     [HttpPost]
     [Authorize]
@@ -87,6 +89,23 @@ namespace checkpoint_8_keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    // NOTE Still need to get this done
+    // [HttpGet("{id}/keeps")]
+
+    // async public Task<ActionResult<List<VaultedKeep>>> GetVaultedKeepsByVaultId(int id)
+    // {
+    //   try
+    //   {
+    //     Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+    //     List<VaultedKeep> vaultedKeeps = _vaultKeepsService.GetVaultedKeepsByVaultId(id, userInfo?.Id);
+    //     return Ok(vaultedKeeps);
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
 
 

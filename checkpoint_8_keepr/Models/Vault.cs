@@ -10,4 +10,10 @@ namespace checkpoint_8_keepr.Models
     public string CreatorId { get; set; }
     public Profile Creator { get; set; }
   }
+
+
+  public class VaultedKeep : Vault
+  {
+    public int VaultedKeepId { get; set; }
+  }
 }

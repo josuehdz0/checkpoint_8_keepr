@@ -1,19 +1,19 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light px-3 shadow-sm d-flex justify-content-between py-0 fixed-bottom sticky-md-top">
+    <div class="navbar-brand d-flex">
+      <div class="d-flex flex-column align-items-center ">
+        <router-link :to="{ name: 'Home' }">
+          <h5 class="my-0 ">Home</h5>
+        </router-link>
       </div>
-    </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    </div>
+    <div class="d-flex flex-column align-items-center ">
+      <h2 class="my-0 d-none d-md-flex">keepr</h2>
+      <h1 class="mdi mdi-alpha-k-circle-outline d-md-none "></h1>
+    </div>
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -24,9 +24,9 @@
           </router-link>
         </li>
       </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
-    </div>
+    </div> -->
+    <!-- LOGIN COMPONENT HERE -->
+    <Login />
   </nav>
 </template>
 
@@ -60,5 +60,4 @@ a:hover {
     height: 64px;
   }
 }
-
 </style>

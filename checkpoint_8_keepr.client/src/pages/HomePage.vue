@@ -8,6 +8,9 @@
       </section>
     </div>
   </div>
+  <Modal id="exampleModal">
+    <ThisKeep />
+  </Modal>
 </template>
 
 <script>
@@ -16,23 +19,26 @@ import { keepsService } from "../services/KeepsService.js";
 import { onMounted } from "vue";
 import { AppState } from "../AppState.js";
 import { computed } from "@vue/reactivity";
+import ThisKeep from "../components/ThisKeep.vue";
 
 export default {
   setup() {
     async function getAllKeeps() {
       try {
         await keepsService.getAllKeeps();
-      } catch (error) {
-        Pop.error(error, "getting all keeps")
+      }
+      catch (error) {
+        Pop.error(error, "getting all keeps");
       }
     }
     onMounted(() => {
       getAllKeeps();
-    })
+    });
     return {
       keeps: computed(() => AppState.keeps)
-    }
-  }
+    };
+  },
+  components: { ThisKeep }
 }
 </script>
 
@@ -64,11 +70,13 @@ $gap: .5em;
   column-gap: $gap;
 
   &>div {
-    // &> makes it only target the direct child of bricks, not all the divs inside bricks
+
     margin-top: $gap;
     display: inline-block;
   }
 }
+
+
 
 
 @media screen and (min-width: 789px) {
@@ -77,7 +85,7 @@ $gap: .5em;
     column-gap: $gap;
 
     &>div {
-      // &> makes it only target the direct child of bricks, not all the divs inside bricks
+
       margin-top: $gap;
       display: inline-block;
     }

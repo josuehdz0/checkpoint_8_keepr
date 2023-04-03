@@ -1,26 +1,36 @@
 <template>
-  <div class="component bg-white rounded shadow-sm">
-    <!-- <router-link :to="{ name: 'RestaurantDetails', params: { restaurantId: restaurant.id } }"> -->
+  <div @click="setActiveKeep()" data-bs-toggle=" modal" data-bs-target="#thisKeep">
 
-    <img class="img-fluid rounded" :src="keep.img" alt="">
+    <div class="component bg-white rounded shadow-sm">
+      <!-- <router-link :to="{ name: 'RestaurantDetails', params: { restaurantId: restaurant.id } }"> -->
 
-    <div class="innershadow bottom-center">
+      <img class="img-fluid rounded" :src="keep.img" alt="">
+
+      <div class="innershadow bottom-center">
+      </div>
+      <h4 class="p-2 m-0 text-light bottom-left">{{ keep.name }}</h4>
+      <img :src="keep.creator.picture" alt=" photo" height="50" class="rounded-circle p-2 m-0 bottom-right" />
+
+
+
+      <!-- </router-link> -->
     </div>
-    <h4 class="p-2 m-0 text-light bottom-left">{{ keep.name }}</h4>
-    <img :src="keep.creator.picture" alt=" photo" height="50" class="rounded-circle p-2 m-0 bottom-right" />
 
-
-
-    <!-- </router-link> -->
   </div>
 </template>
 
 
 <script>
+import { keepsService } from "../services/KeepsService.js";
+
 export default {
   props: { keep: { type: Object, required: true } },
-  setup() {
-    return {}
+  setup(props) {
+    return {
+      async setActiveKeep() {
+        keepsService.setActiveKeep(props.keep)
+      }
+    }
   }
 }
 </script>

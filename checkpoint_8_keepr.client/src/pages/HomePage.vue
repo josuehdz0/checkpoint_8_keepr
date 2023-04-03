@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div class="row">
-
+      <section class="bricks">
+        <div v-for="k in keeps">
+          <KeepCard :keep="k" />
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -10,6 +14,8 @@
 import Pop from "../utils/Pop.js";
 import { keepsService } from "../services/KeepsService.js";
 import { onMounted } from "vue";
+import { AppState } from "../AppState.js";
+import { computed } from "@vue/reactivity";
 
 export default {
   setup() {
@@ -23,12 +29,16 @@ export default {
     onMounted(() => {
       getAllKeeps();
     })
-    return {}
+    return {
+      keeps: computed(() => AppState.keeps)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
+$gap: .5em;
+
 .home {
   display: grid;
   height: 80vh;
@@ -46,6 +56,17 @@ export default {
       object-fit: contain;
       object-position: center;
     }
+  }
+}
+
+.bricks {
+  columns: 300px;
+  column-gap: $gap;
+
+  &>div {
+    // &> makes it only target the direct child of bricks, not all the divs inside bricks
+    margin-top: $gap;
+    display: inline-block;
   }
 }
 </style>

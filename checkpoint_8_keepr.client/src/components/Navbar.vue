@@ -2,15 +2,46 @@
   <nav
     class="navbar navbar-expand-lg navbar-light bg-light px-3 shadow-sm d-flex justify-content-between py-0 fixed-bottom sticky-md-top">
     <div class="navbar-brand d-flex">
-      <div class="d-flex flex-column align-items-center ">
+      <div class="d-flex align-items-center ">
         <router-link :to="{ name: 'Home' }">
-          <h5 class="my-0 ">Home</h5>
+          <h5 class="my-0 ps-1 d-none d-md-flex">Home</h5>
+          <h1 class="mdi mdi-alpha-k-circle-outline d-md-none "></h1>
         </router-link>
+
+        <h5 class="nav-link dropdown-toggle my-0  px-3 fw-semibold d-none d-md-flex" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Create
+        </h5>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">new keep</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">new vault</a></li>
+        </ul>
+
+
       </div>
     </div>
+
     <div class="d-flex flex-column align-items-center ">
-      <h2 class="my-0 d-none d-md-flex">keepr</h2>
-      <h1 class="mdi mdi-alpha-k-circle-outline d-md-none "></h1>
+      <h2 class="my-0 d-none d-md-flex fw-bold">keepr</h2>
+      <div class="btn-group dropup-center dropup">
+
+        <button class="nav-link  fw-semibold d-md-none fs-5 btn" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Create
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">new keep</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">new vault</a></li>
+        </ul>
+
+      </div>
+
     </div>
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +57,7 @@
       </ul>
     </div> -->
     <!-- LOGIN COMPONENT HERE -->
-    <Login />
+    <Login class="ps-md-5 ms-md-5 me-md-2 " />
   </nav>
 </template>
 
@@ -45,9 +76,9 @@ a:hover {
   text-decoration: none;
 }
 
-.nav-link {
+/* .nav-link {
   text-transform: uppercase;
-}
+} */
 
 .navbar-nav .router-link-exact-active {
   border-bottom: 2px solid var(--bs-success);

@@ -8,8 +8,8 @@
           <h1 class="mdi mdi-alpha-k-circle-outline d-md-none "></h1>
         </router-link>
 
-        <h5 class="nav-link dropdown-toggle my-0  px-3 fw-semibold d-none d-md-flex" href="#" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
+        <h5 class="nav-link  my-0  px-3 fw-semibold d-none d-md-flex" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
           Create
         </h5>
         <ul class="dropdown-menu">
@@ -28,7 +28,7 @@
       <h2 class="my-0 d-none d-md-flex fw-bold">keepr</h2>
       <div class="btn-group dropup-center dropup">
 
-        <button class="nav-link  fw-semibold d-md-none fs-5 btn" href="#" role="button" data-bs-toggle="dropdown"
+        <button class="nav-link fw-semibold d-md-none fs-5 btn" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">
           Create
         </button>

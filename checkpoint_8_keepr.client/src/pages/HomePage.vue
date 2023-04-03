@@ -60,13 +60,27 @@ $gap: .5em;
 }
 
 .bricks {
-  columns: 300px;
+  columns: 150px;
   column-gap: $gap;
 
   &>div {
     // &> makes it only target the direct child of bricks, not all the divs inside bricks
     margin-top: $gap;
     display: inline-block;
+  }
+}
+
+
+@media screen and (min-width: 789px) {
+  .bricks {
+    columns: 200px;
+    column-gap: $gap;
+
+    &>div {
+      // &> makes it only target the direct child of bricks, not all the divs inside bricks
+      margin-top: $gap;
+      display: inline-block;
+    }
   }
 }
 </style>

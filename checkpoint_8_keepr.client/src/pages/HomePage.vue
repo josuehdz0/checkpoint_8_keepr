@@ -1,21 +1,28 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img
-        src="https://bcw.blob.core.windows.net/public/img/8600856373152463"
-        alt="CodeWorks Logo"
-        class="rounded-circle"
-      >
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container">
+    <div class="row">
+
     </div>
   </div>
 </template>
 
 <script>
+import Pop from "../utils/Pop.js";
+import { keepsService } from "../services/KeepsService.js";
+import { onMounted } from "vue";
+
 export default {
   setup() {
+    async function getAllKeeps() {
+      try {
+        await keepsService.getAllKeeps();
+      } catch (error) {
+        Pop.error(error, "getting all keeps")
+      }
+    }
+    onMounted(() => {
+      getAllKeeps();
+    })
     return {}
   }
 }

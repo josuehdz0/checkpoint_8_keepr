@@ -12,8 +12,8 @@ namespace checkpoint_8_keepr.Models
   }
 
 
-  public class VaultedKeep : Vault
-  {
-    public int VaultedKeepId { get; set; }
-  }
+  // public class VaultedKeep : Vault
+  // {
+  //   public int VaultedKeepId { get; set; }
+  // }
 }

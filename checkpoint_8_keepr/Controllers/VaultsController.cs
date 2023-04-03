@@ -91,21 +91,21 @@ namespace checkpoint_8_keepr.Controllers
     }
 
     // NOTE Still need to get this done
-    // [HttpGet("{id}/keeps")]
+    [HttpGet("{id}/keeps")]
 
-    // async public Task<ActionResult<List<VaultedKeep>>> GetVaultedKeepsByVaultId(int id)
-    // {
-    //   try
-    //   {
-    //     Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-    //     List<VaultedKeep> vaultedKeeps = _vaultKeepsService.GetVaultedKeepsByVaultId(id, userInfo?.Id);
-    //     return Ok(vaultedKeeps);
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+    async public Task<ActionResult<List<VaultedKeep>>> GetVaultedKeepsByVaultId(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        List<VaultedKeep> vaultedKeeps = _vaultKeepsService.GetVaultedKeepsByVaultId(id, userInfo?.Id);
+        return Ok(vaultedKeeps);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
 
 

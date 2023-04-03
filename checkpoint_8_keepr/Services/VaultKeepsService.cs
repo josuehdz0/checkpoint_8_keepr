@@ -3,16 +3,26 @@ namespace checkpoint_8_keepr.Services
   public class VaultKeepsService
   {
     private readonly VaultKeepsRepository _repo;
+    private readonly VaultsService _vaultService;
 
-    public VaultKeepsService(VaultKeepsRepository repo)
+    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultService)
     {
       _repo = repo;
+      _vaultService = vaultService;
     }
 
     internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
     {
       VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
       return vaultKeep;
+    }
+
+    internal List<VaultedKeep> GetVaultedKeepsByVaultId(int vaultId, string userId)
+    {
+
+      Vault vault = _vaultService.GetOneVault(vaultId, userId);
+      List<VaultedKeep> vaultedKeeps = _repo.GetVaultedKeeps(vaultId);
+      return vaultedKeeps;
     }
 
     internal string removeVaultKeep(int id, string userId)

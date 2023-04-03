@@ -13,4 +13,9 @@ namespace checkpoint_8_keepr.Models
     public int Kept { get; set; }
     public Profile Creator { get; set; }
   }
+
+  public class VaultedKeep : Keep
+  {
+    public int VaultedKeepId { get; set; }
+  }
 }

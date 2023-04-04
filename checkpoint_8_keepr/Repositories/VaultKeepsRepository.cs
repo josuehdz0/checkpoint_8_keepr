@@ -51,8 +51,8 @@ namespace checkpoint_8_keepr.Repositories
       ";
       List<VaultedKeep> vaultedKeeps = _db.Query<VaultedKeep, VaultKeep, Vault, Profile, VaultedKeep>(sql, (vaultedKeep, vaultedkeep, vault, profile) =>
       {
-        vaultedKeep.VaultedKeepId = vaultedkeep.Id;
-        vaultedKeep.Id = vault.Id;
+        vaultedKeep.VaultKeepId = vaultedkeep.Id;
+        // vaultedKeep.Id = vault.Id;
         vaultedKeep.Creator = profile;
         return vaultedKeep;
       }, new { vaultId }).ToList();

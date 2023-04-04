@@ -41,6 +41,12 @@ namespace checkpoint_8_keepr.Services
 
     }
 
+    internal List<Vault> GetAllVaultsByProfileId(string userId)
+    {
+      List<Vault> vaults = _repo.GetAllByProfileId(userId);
+      return vaults;
+    }
+
     internal Vault GetOneVault(int id, string userId)
     {
       Vault vault = _repo.GetOneVault(id);

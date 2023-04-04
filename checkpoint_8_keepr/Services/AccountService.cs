@@ -24,6 +24,13 @@ public class AccountService
     return profile;
   }
 
+  internal Profile GetProfile(string id)
+  {
+    Profile profile = _repo.GetProfileById(id);
+
+    return profile;
+  }
+
   internal Account Edit(Account editData, string userEmail)
   {
     Account original = GetProfileByEmail(userEmail);
@@ -31,4 +38,10 @@ public class AccountService
     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
     return _repo.Edit(original);
   }
+
+  // internal List<Vault> GetMyVaults(Account userInfo)
+  // {
+  //   List<Vault> vaults = _repo.GetMyVaults(userInfo.Id);
+  //   return vaults;
+  // }
 }

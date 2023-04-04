@@ -8,7 +8,7 @@ namespace checkpoint_8_keepr.Models
     public string Name { get; set; }
     public string Description { get; set; }
     public string Img { get; set; }
-    public int? Views { get; set; }
+    public int Views { get; set; }
     public string CreatorId { get; set; }
     public int Kept { get; set; }
     public Profile Creator { get; set; }
@@ -16,6 +16,6 @@ namespace checkpoint_8_keepr.Models
 
   public class VaultedKeep : Keep
   {
-    public int VaultedKeepId { get; set; }
+    public int VaultKeepId { get; set; }
   }
 }

@@ -21,6 +21,13 @@ public class AccountsRepository
     return _db.QueryFirstOrDefault<Account>(sql, new { id });
   }
 
+  internal Profile GetProfileById(string id)
+  {
+    string sql = "SELECT * FROM accounts WHERE id = @id";
+    return _db.QueryFirstOrDefault<Profile>(sql, new { id });
+  }
+
+
   internal Account Create(Account newAccount)
   {
     string sql = @"

@@ -43,6 +43,12 @@ namespace checkpoint_8_keepr.Services
       return keeps;
     }
 
+    internal List<Keep> GetAllKeepsByProfileId(string userId)
+    {
+      List<Keep> keeps = _repo.GetAllByProfileId(userId);
+      return keeps;
+    }
+
     internal Keep GetOneKeep(int id, string userId)
     {
       Keep keep = _repo.GetOne(id);

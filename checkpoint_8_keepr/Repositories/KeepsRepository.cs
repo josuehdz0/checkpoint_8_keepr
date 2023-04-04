@@ -71,8 +71,11 @@ namespace checkpoint_8_keepr.Repositories
       string sql = @"
       UPDATE keeps
       SET
+
       name = @name,
-      description = @description
+      description = @description,
+      views = @views
+      
       WHERE id = @id;
       ";
       int rows = _db.Execute(sql, original);

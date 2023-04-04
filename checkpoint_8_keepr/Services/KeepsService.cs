@@ -17,7 +17,7 @@ namespace checkpoint_8_keepr.Services
 
     internal string DeleteKeep(int id, string userId)
     {
-      Keep keep = this.GetOneKeep(id);
+      Keep keep = this.GetOneKeep(id, userId);
       if (keep.CreatorId != userId) throw new Exception("This is not your Keep to delete goofy");
       bool result = _repo.Remove(id);
       if (!result) throw new Exception($"Could not delete Keep with id: {keep.Id}");
@@ -26,7 +26,7 @@ namespace checkpoint_8_keepr.Services
 
     internal Keep EditKeep(Keep updateData, string userId)
     {
-      Keep original = this.GetOneKeep(updateData.Id);
+      Keep original = this.GetOneKeep(updateData.Id, userId);
       if (original.CreatorId != userId) throw new Exception("This is not your Keep to Edit");
       original.Name = updateData.Name != null ? updateData.Name : original.Name;
       original.Description = updateData.Description != null ? updateData.Description : original.Description;
@@ -43,10 +43,15 @@ namespace checkpoint_8_keepr.Services
       return keeps;
     }
 
-    internal Keep GetOneKeep(int id)
+    internal Keep GetOneKeep(int id, string userId)
     {
       Keep keep = _repo.GetOne(id);
       if (keep == null) throw new Exception("This Keep ain't it");
+      {
+        if (keep.CreatorId != userId)
+          keep.Views++;
+        _repo.Update(keep);
+      }
       return keep;
     }
   }

@@ -17,7 +17,7 @@
 
           <div class="row justify-content-center text-center pt-3">
             <div class="col-3">
-              <div class="mdi mdi-eye-outline"></div>
+              <div class="mdi mdi-eye-outline"> {{ keep.views }}</div>
 
             </div>
             <div class="col-3">

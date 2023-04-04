@@ -6,11 +6,14 @@ namespace checkpoint_8_keepr.Controllers
   {
     private readonly VaultKeepsService _vaultKeepsService;
 
+    private readonly VaultsService _vaultsService;
+
     private readonly Auth0Provider _auth;
 
-    public VaultKeepsController(VaultKeepsService vaultKeepsService, Auth0Provider auth)
+    public VaultKeepsController(VaultKeepsService vaultKeepsService, VaultsService vaultsService, Auth0Provider auth)
     {
       _vaultKeepsService = vaultKeepsService;
+      _vaultsService = vaultsService;
       _auth = auth;
     }
 
@@ -23,7 +26,9 @@ namespace checkpoint_8_keepr.Controllers
       {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
         vaultKeepData.CreatorId = userInfo.Id;
-        VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData);
+        Vault vault = _vaultsService.GetOneVault(vaultKeepData.VaultId, userInfo?.Id);
+        VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData, userInfo?.Id, vault.CreatorId);
+
         return Ok(vaultKeep);
       }
       catch (Exception e)

@@ -11,8 +11,9 @@ namespace checkpoint_8_keepr.Services
       _vaultService = vaultService;
     }
 
-    internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
+    internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId, string vaultCreatorId)
     {
+      if (vaultCreatorId != userId) throw new UnauthorizedAccessException("This is not your vaultkeep to create");
       VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
       return vaultKeep;
     }

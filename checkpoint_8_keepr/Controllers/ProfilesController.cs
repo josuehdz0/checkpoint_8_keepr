@@ -54,12 +54,12 @@ namespace checkpoint_8_keepr.Controllers
 
     [HttpGet("{id}/vaults")]
 
-    public ActionResult<List<Vault>> GetVaultsByProfileId(string id)
+    public async Task<ActionResult<List<Vault>>> GetVaultsByProfileId(string id)
     {
       try
       {
-        // Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        List<Vault> vaults = _vaultsSrevice.GetAllVaultsByProfileId(id);
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        List<Vault> vaults = _vaultsSrevice.GetAllVaultsByProfileId(id, userInfo?.Id);
         return Ok(vaults);
       }
       catch (Exception e)

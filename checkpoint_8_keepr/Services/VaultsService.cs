@@ -41,10 +41,20 @@ namespace checkpoint_8_keepr.Services
 
     }
 
-    internal List<Vault> GetAllVaultsByProfileId(string userId)
+    internal List<Vault> GetAllVaultsByAccountId(string id)
     {
-      List<Vault> vaults = _repo.GetAllByProfileId(userId);
-      return vaults;
+      {
+        List<Vault> vaults = _repo.GetAllByProfileId(id);
+
+        return vaults;
+      }
+    }
+
+    internal List<Vault> GetAllVaultsByProfileId(string profileId, string userId)
+    {
+      List<Vault> vaults = _repo.GetAllByProfileId(profileId);
+      List<Vault> filteredVaults = vaults.FindAll(v => v.CreatorId == userId || v.IsPrivate == false);
+      return filteredVaults;
     }
 
     internal Vault GetOneVault(int id, string userId)

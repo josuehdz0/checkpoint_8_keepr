@@ -10,11 +10,14 @@ namespace checkpoint_8_keepr.Controllers
 
     private readonly Auth0Provider _auth;
 
-    public VaultKeepsController(VaultKeepsService vaultKeepsService, VaultsService vaultsService, Auth0Provider auth)
+    private readonly KeepsService _keepsService;
+
+    public VaultKeepsController(VaultKeepsService vaultKeepsService, VaultsService vaultsService, Auth0Provider auth, KeepsService keepsService)
     {
       _vaultKeepsService = vaultKeepsService;
       _vaultsService = vaultsService;
       _auth = auth;
+      _keepsService = keepsService;
     }
 
     [HttpPost]
@@ -27,7 +30,8 @@ namespace checkpoint_8_keepr.Controllers
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
         vaultKeepData.CreatorId = userInfo.Id;
         Vault vault = _vaultsService.GetOneVault(vaultKeepData.VaultId, userInfo?.Id);
-        VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData, userInfo?.Id, vault.CreatorId);
+        Keep keep = _keepsService.GetOneKeep(vaultKeepData.KeepId, userInfo?.Id);
+        VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData, userInfo?.Id, vault, keep);
 
         return Ok(vaultKeep);
       }
@@ -44,7 +48,9 @@ namespace checkpoint_8_keepr.Controllers
     {
       try
       {
+
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        // Keep keep = _keepsService.GetOneKeep(vaultKeepData.KeepId, userInfo?.Id);
         string message = _vaultKeepsService.removeVaultKeep(id, userInfo?.Id);
         return Ok(message);
 

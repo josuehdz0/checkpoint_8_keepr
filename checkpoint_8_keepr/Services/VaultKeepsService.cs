@@ -5,16 +5,22 @@ namespace checkpoint_8_keepr.Services
     private readonly VaultKeepsRepository _repo;
     private readonly VaultsService _vaultService;
 
-    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultService)
+    private readonly KeepsRepository _keeprepo;
+
+    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultService, KeepsRepository keeprepo)
     {
       _repo = repo;
       _vaultService = vaultService;
+      _keeprepo = keeprepo;
     }
 
-    internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId, string vaultCreatorId)
+    internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId, Vault vault, Keep keep)
     {
-      if (vaultCreatorId != userId) throw new UnauthorizedAccessException("This is not your vaultkeep to create");
+      if (vault.CreatorId != userId) throw new UnauthorizedAccessException("This is not your vaultkeep to create");
       VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
+      keep.Kept++;
+      _keeprepo.Update(keep);
+
       return vaultKeep;
     }
 

@@ -92,7 +92,8 @@ namespace checkpoint_8_keepr.Repositories
 
       name = @name,
       description = @description,
-      views = @views
+      views = @views,
+      kept = @kept
       
       WHERE id = @id;
       ";

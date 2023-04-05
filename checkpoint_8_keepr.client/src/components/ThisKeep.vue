@@ -21,7 +21,7 @@
 
             </div>
             <div class="col-3">
-              <div class="mdi mdi-alpha-k-circle-outline"></div>
+              <div class="mdi mdi-alpha-k-circle-outline">{{ keep.kept }}</div>
 
             </div>
           </div>

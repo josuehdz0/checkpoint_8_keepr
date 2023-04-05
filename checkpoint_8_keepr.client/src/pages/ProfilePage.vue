@@ -4,7 +4,10 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="row">
-          <img :src="profile.coverImg" alt="" class="img-fluid rounded coverimg p-0">
+          <img
+            :src="profile.coverImg ? profile.coverImg : 'https://pbs.twimg.com/media/Fhh5tFcXkAcwX4f?format=jpg&name=900x900'"
+            alt="Cover Img" class="img-fluid rounded coverimg p-0">
+
         </div>
         <!-- NOTE  Profile info that translates over coverimg-->
         <div class="row justify-content-center profile-info">
@@ -26,7 +29,7 @@
           <h2> Vaults</h2>
         </div>
         <!-- NOTE Here are the Profiles Vaults -->
-        <div class="row justify-content-between vaulttranslate">
+        <div class="row justify-content-between justify-content-md-evenly vaulttranslate">
           <div class="col-md-3 col-6 p-2 " v-for="v in vaults">
 
             <VaultCard :vault="v" />

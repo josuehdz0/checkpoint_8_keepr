@@ -40,7 +40,8 @@
             </b>
             <div class="col-4 d-flex justify-content-center">
               <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
-                <img :src="keep.creator.picture" alt=" photo" height="50" class="profile-picture p-2" />
+                <img :src="keep.creator.picture" alt=" photo" height="50" class="profile-picture p-2"
+                  data-bs-dismiss="modal" />
               </router-link>
             </div>
           </div>

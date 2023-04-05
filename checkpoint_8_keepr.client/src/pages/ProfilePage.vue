@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="profile" class="container">
     <!-- NOTE Profile Info -->
     <div class="row">
       <div class="col-12">
@@ -8,7 +8,7 @@
         </div>
         <div class="row">
 
-          <!-- {{ profile.name }} -->
+          {{ profile.name }}
 
         </div>
 

@@ -34,8 +34,8 @@
             </p>
           </div>
 
-          <div class="row">
-            <b class="col-8 d-flex align-items-center">My Vaults
+          <div class="row justify-content-evenly">
+            <div class="col-5 d-flex align-items-center ps-2 pe-0">My Vaults
               <button class="btn"> Save</button>
               <button v-if="keep.creatorId == account.id" class="btn d-flex align-items-center"
                 @click="deleteKeep(keep.id)">
@@ -43,8 +43,12 @@
                 <div class="mdi mdi-trash-can fs-2 text-danger"></div>
 
               </button>
-            </b>
-            <div class="col-4 d-flex justify-content-center">
+            </div>
+            <div class="col-4  d-flex align-items-center p-0">
+              {{ keep.creator.name }}
+            </div>
+
+            <div class="col-2 d-flex justify-content-end pe-1 pb-1">
               <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
                 <img :src="keep.creator.picture" alt=" photo" height="50" class="profile-picture p-2"
                   data-bs-dismiss="modal" />

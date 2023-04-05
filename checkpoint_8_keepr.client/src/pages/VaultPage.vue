@@ -1,6 +1,6 @@
 <template>
   <div v-if="vault" class="containter-fluid">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-0 mt-md-4">
       <div class="col-md-6 vaultphoto rounded" :style="{ backgroundImage: `url(${vault.img})` }">
         <div class="text-container d-flex justify-content-center align-items-baseline my-0">
           <h3 class="vaulttext pb-2 ps-0">

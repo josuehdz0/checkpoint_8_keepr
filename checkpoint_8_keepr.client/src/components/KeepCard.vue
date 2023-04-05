@@ -9,7 +9,7 @@
       <div class="innershadow bottom-center">
       </div>
       <h4 class="p-2 m-0 text-light bottom-left">{{ keep.name }}</h4>
-      <img :src="keep.creator.picture" alt=" photo" height="50" class="rounded-circle p-2 m-0 bottom-right" />
+      <img :src="keep.creator.picture" alt=" photo" height="50" class="profile-picture p-2 bottom-right" />
 
 
 
@@ -66,5 +66,13 @@ export default {
   height: 90px;
   background: linear-gradient(180.3deg, rgba(0, 0, 0, 0) 49.73%, rgba(0, 0, 0, 0.664) 90%);
   // translate: 0px -90px;
+}
+
+.profile-picture {
+  height: 6vh;
+  width: 6vh;
+  border-radius: 50%;
+  object-fit: cover;
+  // box-shadow: 2px 2px 4px black;
 }
 </style>

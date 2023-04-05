@@ -38,9 +38,9 @@
             <b class="col-8 d-flex align-items-center">My Vaults
               <button class="btn"> Save</button>
             </b>
-            <div class="col-4 d-flex justify-content-end">
+            <div class="col-4 d-flex justify-content-center">
               <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
-                <img :src="keep.creator.picture" alt=" photo" height="50" class="rounded-circle p-2 m-0 bottom-right" />
+                <img :src="keep.creator.picture" alt=" photo" height="50" class="profile-picture p-2" />
               </router-link>
             </div>
           </div>
@@ -80,6 +80,14 @@ export default {
 .infosize {
   height: auto;
   min-height: 100%;
+}
+
+.profile-picture {
+  height: 10vh;
+  width: 10vh;
+  border-radius: 50%;
+  object-fit: cover;
+  // box-shadow: 2px 2px 4px black;
 }
 
 .top-right {

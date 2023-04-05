@@ -12,6 +12,10 @@ class ProfilesService{
     AppState.profile = new Profile(res.data)
   }
 
+  clearProfile(){
+    AppState.profile = null
+  }
+
 }
 
 export const profilesService = new ProfilesService()

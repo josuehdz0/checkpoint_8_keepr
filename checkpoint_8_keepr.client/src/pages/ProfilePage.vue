@@ -1,13 +1,25 @@
 <template>
-  <div class="component">
+  <div class="container">
+    <!-- NOTE Profile Info -->
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          cover photo
+        </div>
+        <div class="row">
 
+          <!-- {{ profile.name }} -->
 
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import { logger } from "../utils/Logger.js";
 import { profilesService } from "../services/ProfilesService.js";
@@ -31,8 +43,14 @@ export default {
     onMounted(() => {
       getProfileById();
     });
+
+    onUnmounted(() => {
+      profilesService.clearProfile();
+    })
     return {
-      profile: computed(() => AppState.profile)
+      profile: computed(() => AppState.profile),
+      account: computed(() => AppState.account),
+
     }
   }
 }

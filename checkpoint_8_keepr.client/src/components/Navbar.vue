@@ -15,7 +15,7 @@
             Create
           </h5>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">new keep</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">new keep</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -37,7 +37,7 @@
           Create
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">new keep</a></li>
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">new keep 1</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
@@ -47,31 +47,27 @@
       </div>
 
     </div>
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-      </ul>
-    </div> -->
+
     <!-- LOGIN COMPONENT HERE -->
     <Login class="ps-md-5 ms-md-5 me-md-2 " />
   </nav>
+
+  <Modal id="exampleModal">
+    <KeepForm />
+  </Modal>
 </template>
 
 <script>
 import Login from './Login.vue'
+import KeepCard from "./KeepCard.vue";
+import KeepForm from "./KeepForm.vue";
+
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+  components: { Login, KeepForm },
+
 }
 </script>
 

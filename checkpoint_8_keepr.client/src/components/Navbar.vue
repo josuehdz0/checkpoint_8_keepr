@@ -7,18 +7,22 @@
           <h5 class="my-0 ps-1 d-none d-md-flex">Home</h5>
           <h1 class="mdi mdi-alpha-k-circle-outline d-md-none "></h1>
         </router-link>
+        <div class=" btn-group dropend">
 
-        <h5 class="nav-link  my-0  px-3 fw-semibold d-none d-md-flex" href="#" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Create
-        </h5>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">new keep</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="#">new vault</a></li>
-        </ul>
+
+          <h5 class="nav-link  my-0  px-3 fw-semibold d-none d-md-flex" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Create
+          </h5>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">new keep</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">new vault</a></li>
+          </ul>
+
+        </div>
 
 
       </div>

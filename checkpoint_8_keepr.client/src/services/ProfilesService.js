@@ -26,7 +26,7 @@ class ProfilesService{
 
   async getVaultsByCreatorId(creatorId){
     const res = await api.get(`api/profiles/${creatorId}/vaults`)
-    // logger.log("Vaults by Creator Id", res.data)
+    logger.log("Vaults by Creator Id", res.data)
     AppState.vaults = res.data.map(v => new Vault(v))
   }
 

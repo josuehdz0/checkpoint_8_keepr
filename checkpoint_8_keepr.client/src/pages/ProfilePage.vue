@@ -17,7 +17,7 @@
               {{ profile.name }}
             </h2>
             <div class="fw-semibold pt-1">
-              # vaults | # keeps
+              {{ vaults.length }} vaults | {{ keeps.length }} keeps
             </div>
           </div>
         </div>

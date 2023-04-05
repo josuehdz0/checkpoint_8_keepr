@@ -1,8 +1,11 @@
 <template>
   <div class="component rounded vaultimg " :style="{ backgroundImage: `url(${vault.img})` }">
-    <div class="text-container ">
-      <h2 class="vaulttext pb-2 ps-0">
+    <div class="text-container d-flex justify-content-between align-items-baseline my-0">
+      <h3 class="vaulttext pb-2 ps-0">
         {{ vault.name }}
+      </h3>
+      <h2 v-if="vault.isPrivate" class="">
+        <div class="mdi mdi-lock vaulttext"></div>
       </h2>
 
     </div>

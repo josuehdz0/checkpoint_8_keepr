@@ -39,7 +39,9 @@
               <button class="btn"> Save</button>
             </b>
             <div class="col-4 d-flex justify-content-end">
-              <img :src="keep.creator.picture" alt=" photo" height="50" class="rounded-circle p-2 m-0 bottom-right" />
+              <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                <img :src="keep.creator.picture" alt=" photo" height="50" class="rounded-circle p-2 m-0 bottom-right" />
+              </router-link>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light bg-light px-3 shadow-sm d-flex justify-content-between py-0 fixed-bottom sticky-md-top">
+    class="navbar navbar-expand-lg navbar-light bg-light px-3 smallshadow d-flex justify-content-between py-0 fixed-bottom sticky-md-top">
     <div class="navbar-brand d-flex">
       <div class="d-flex align-items-center ">
         <router-link :to="{ name: 'Home' }">
@@ -15,7 +15,7 @@
             Create
           </h5>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">new keep</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#keepForm">new keep</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -37,7 +37,7 @@
           Create
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">new keep 1</a></li>
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#keepForm">new keep</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
@@ -52,7 +52,7 @@
     <Login class="ps-md-5 ms-md-5 me-md-2 " />
   </nav>
 
-  <Modal id="exampleModal">
+  <Modal id="keepForm">
     <KeepForm />
   </Modal>
 </template>
@@ -74,6 +74,10 @@ export default {
 <style scoped>
 a:hover {
   text-decoration: none;
+}
+
+.smallshadow {
+  box-shadow: 1rem 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
 /* .nav-link {

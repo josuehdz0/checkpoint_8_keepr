@@ -10,22 +10,27 @@
         </div>
       </div>
       <div class="row my-4">
-        <form>
+
+        <form @submit.prevent="createKeep()">
           <div class="mb-3 p-1">
             <label class="form-label"></label>
-            <input required type="text" class="form-control" id="name" aria-describedby="name" placeholder="Title...">
+            <input v-model="editable.name" required type="text" class="form-control" id="name" aria-describedby="name"
+              placeholder="Title...">
           </div>
           <div class="mb-3 p-1">
             <label class="form-label"></label>
-            <input required type="url" class="form-control" id="image" aria-describedby="image"
+            <input v-model="editable.img" required type="url" class="form-control" id="image" aria-describedby="image"
               placeholder="Image URL...">
           </div>
           <div class="mb-3 p-1">
             <label for="description" class="form-label "></label>
-            <textarea placeholder="Description..." required class="form-control" id="description" rows="2"></textarea>
+            <textarea v-model="editable.description" placeholder="Description..." required class="form-control"
+              id="description" rows="2"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary m-3">Submit</button>
+          <button type="submit" class="btn btn-primary m-3" data-bs-dismiss="modal">Create Keep</button>
         </form>
+
+
       </div>
     </div>
   </div>
@@ -33,9 +38,27 @@
 
 
 <script>
+import { ref } from "vue";
+import Pop from "../utils/Pop.js";
+import { logger } from "../utils/Logger.js";
+import { keepsService } from "../services/KeepsService.js";
+
 export default {
   setup() {
-    return {}
+    const editable = ref({})
+    return {
+      editable,
+      async createKeep() {
+        try {
+          const formData = editable.value
+          const keep = await keepsService.createKeep(formData)
+          editable.value = {}
+        } catch (error) {
+          logger.log(error)
+          Pop.error(error.message)
+        }
+      }
+    }
   }
 }
 </script>

@@ -16,6 +16,13 @@ class KeepsService{
     logger.log(keep, "this keep")
   }
 
+  async createKeep(formData){
+    const res = await api.post('api/keeps', formData)
+    logger.log("Creating Keep", res.data)
+    AppState.keeps.push(new Keep(res.data))
+    return res.data
+  }
+
 
 }
 

@@ -10,10 +10,10 @@
         <div class="row justify-content-center profile-info">
           <div class="col-12 d-flex flex-column align-items-center">
             <img :src="profile.picture" alt="" class="p-0 profile-picture ">
-            <h2 class="pt-2">
+            <h2 class="pt-3">
               {{ profile.name }}
             </h2>
-            <div class="fw-semibold">
+            <div class="fw-semibold pt-1">
               # vaults | # keeps
             </div>
           </div>
@@ -22,17 +22,21 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-md-10">
-        <div class="row">
-          <h3> Vaults</h3>
+        <div class="row vaulttranslate">
+          <h2> Vaults</h2>
         </div>
         <!-- NOTE Here are the Profiles Vaults -->
-        <div class="row">
-          vault cards
+        <div class="row justify-content-between vaulttranslate">
+          <div class="col-md-3 col-6 p-2 " v-for="v in vaults">
+
+            <VaultCard :vault="v" />
+
+          </div>
         </div>
       </div>
       <div class="col-md-10">
         <div class="row">
-          <h3> Keeps</h3>
+          <h2> Keeps</h2>
         </div>
 
         <!-- NOTE Here are the Profiles Keeps -->
@@ -62,6 +66,7 @@ import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import ThisKeep from "../components/ThisKeep.vue";
+import VaultCard from "../components/VaultCard.vue";
 
 
 export default {
@@ -87,9 +92,18 @@ export default {
       }
     }
 
+    async function getVaultsByProfileId() {
+      try {
+        await profilesService.getVaultsByCreatorId(route.params.profileId)
+      } catch (error) {
+        Pop.error(error, "Getting all Vaults by ProfileId")
+      }
+    }
+
     onMounted(() => {
       getProfileById();
       getKeepsByProfileId();
+      getVaultsByProfileId();
     });
 
     onUnmounted(() => {
@@ -99,10 +113,11 @@ export default {
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
+      vaults: computed(() => AppState.vaults),
 
     }
   },
-  components: { ThisKeep }
+  components: { ThisKeep, VaultCard }
 }
 </script>
 
@@ -118,7 +133,10 @@ $gap: .8em;
 
 .profile-info {
   translate: 0px -8vh;
+}
 
+.vaulttranslate {
+  translate: 0px -6vh;
 }
 
 .profile-picture {

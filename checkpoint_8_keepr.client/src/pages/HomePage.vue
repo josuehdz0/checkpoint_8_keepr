@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$gap: .5em;
+$gap: .9em;
 
 .home {
   display: grid;

@@ -70,6 +70,7 @@ import Pop from "../utils/Pop.js";
 import { keepsService } from "../services/KeepsService.js";
 import { logger } from "../utils/Logger.js";
 import { useRoute, useRouter } from "vue-router";
+import { Modal } from "bootstrap";
 // import bootstrap from "bootstrap";
 
 export default {
@@ -86,6 +87,7 @@ export default {
           if (await Pop.confirm('You sure you want to delete this keep?')) {
             await keepsService.deleteKeep(keepId)
             // router.push({ name: 'Home' })
+            Modal.getOrCreateInstance('#exampleModal').hide()
 
           }
         } catch (error) {

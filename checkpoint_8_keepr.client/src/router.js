@@ -25,7 +25,8 @@ const routes = [
   {
     path: '/profiles/:profileId',
     name: 'Profile',
-    component: loadPage('ProfilePage')
+    component: loadPage('ProfilePage'),
+    beforeEnter: authSettled
   },
   {
     path: '/vaults/:vaultId',

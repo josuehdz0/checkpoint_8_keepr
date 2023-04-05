@@ -50,6 +50,8 @@ import { logger } from "../utils/Logger.js";
 import { profilesService } from "../services/ProfilesService.js";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
+
 
 export default {
   setup() {
@@ -65,8 +67,18 @@ export default {
         Pop.error(error.message);
       }
     }
+
+    async function getKeepsByProfileId() {
+      try {
+        await profilesService.getKeepsByCreatorId(route.params.profileId)
+      } catch (error) {
+        Pop.error(error, "Getting all Keeps by ProfileId")
+      }
+    }
+
     onMounted(() => {
       getProfileById();
+      getKeepsByProfileId();
     });
 
     onUnmounted(() => {

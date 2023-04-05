@@ -19,7 +19,7 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">new vault</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#vaultForm">new vault</a></li>
           </ul>
 
         </div>
@@ -41,7 +41,7 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="#">new vault</a></li>
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#vaultForm">new vault</a></li>
         </ul>
 
       </div>
@@ -55,6 +55,10 @@
   <Modal id="keepForm">
     <KeepForm />
   </Modal>
+
+  <Modal id="vaultForm">
+    <VaultForm />
+  </Modal>
 </template>
 
 <script>
@@ -63,6 +67,7 @@ import KeepCard from "./KeepCard.vue";
 import KeepForm from "./KeepForm.vue";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
+import VaultForm from "./VaultForm.vue";
 
 export default {
   setup() {
@@ -70,7 +75,7 @@ export default {
       account: computed(() => AppState.account)
     }
   },
-  components: { Login, KeepForm },
+  components: { Login, KeepForm, VaultForm },
 
 }
 </script>

@@ -10,8 +10,8 @@
         <div class=" btn-group dropend">
 
 
-          <h5 class="nav-link  my-0  px-3 fw-semibold d-none d-md-flex" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <h5 v-if="account.id" class="nav-link  my-0  px-3 fw-semibold d-none d-md-flex" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
             Create
           </h5>
           <ul class="dropdown-menu">
@@ -32,8 +32,8 @@
       <h2 class="my-0 d-none d-md-flex fw-bold">keepr</h2>
       <div class="btn-group dropup-center dropup">
 
-        <button class="nav-link fw-semibold d-md-none fs-5 btn" href="#" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
+        <button v-if="account.id" class="nav-link fw-semibold d-md-none fs-5 btn" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
           Create
         </button>
         <ul class="dropdown-menu">
@@ -61,10 +61,14 @@
 import Login from './Login.vue'
 import KeepCard from "./KeepCard.vue";
 import KeepForm from "./KeepForm.vue";
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState.js";
 
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login, KeepForm },
 

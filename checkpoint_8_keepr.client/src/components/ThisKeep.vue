@@ -37,6 +37,12 @@
           <div class="row">
             <b class="col-8 d-flex align-items-center">My Vaults
               <button class="btn"> Save</button>
+              <button v-if="keep.creatorId == account.id" class="btn d-flex align-items-center"
+                @click="deleteKeep(keep.id)">
+
+                <div class="mdi mdi-trash-can fs-2 text-danger"></div>
+
+              </button>
             </b>
             <div class="col-4 d-flex justify-content-center">
               <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
@@ -60,11 +66,33 @@
 <script>
 import { AppState } from "../AppState.js";
 import { computed } from "@vue/reactivity";
+import Pop from "../utils/Pop.js";
+import { keepsService } from "../services/KeepsService.js";
+import { logger } from "../utils/Logger.js";
+import { useRoute, useRouter } from "vue-router";
+// import bootstrap from "bootstrap";
 
 export default {
   setup() {
+    const router = useRouter();
+
+
     return {
-      keep: computed(() => AppState.keep)
+      keep: computed(() => AppState.keep),
+      account: computed(() => AppState.account),
+
+      async deleteKeep(keepId) {
+        try {
+          if (await Pop.confirm('You sure you want to delete this keep?')) {
+            await keepsService.deleteKeep(keepId)
+            // router.push({ name: 'Home' })
+
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      }
     }
   }
 }

@@ -55,9 +55,12 @@ import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
 import Pop from "../utils/Pop.js";
 import { profilesService } from "../services/ProfilesService.js";
+import { useRouter } from "vue-router";
 export default {
   setup() {
     const editable = ref({})
+    const router = useRouter()
+
     return {
       editable,
       account: computed(() => AppState.account),
@@ -67,6 +70,7 @@ export default {
         try {
           await profilesService.editProfile(editable.value)
           editable.value = {}
+          router.push({ name: 'Profile', params: { profileId: this.account.id } })
         } catch (error) {
           Pop.error(error, "Editing Profile")
         }

@@ -55,8 +55,11 @@
                 <div class="mdi mdi-trash-can fs-2 text-danger"></div>
               </button>
             </div>
-            <div class="col-4  d-flex align-items-center p-0">
-              {{ keep.creator.name }}
+            <div class="col-4  d-flex align-items-center  justify-content-center p-0">
+              <b>
+
+                {{ keep.creator.name }}
+              </b>
             </div>
 
             <div class="col-2 d-flex justify-content-end pe-1 pb-1">

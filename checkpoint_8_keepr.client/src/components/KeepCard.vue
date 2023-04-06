@@ -23,13 +23,21 @@
 
 <script>
 import { keepsService } from "../services/KeepsService.js";
+import { logger } from "../utils/Logger.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   props: { keep: { type: Object, required: true } },
   setup(props) {
     return {
       async setActiveKeep() {
-        keepsService.setActiveKeep(props.keep)
+        try {
+          keepsService.setActiveKeep(props.keep)
+
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
       }
     }
   }

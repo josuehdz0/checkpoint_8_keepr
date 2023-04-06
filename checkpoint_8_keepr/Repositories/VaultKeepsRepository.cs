@@ -46,7 +46,7 @@ namespace checkpoint_8_keepr.Repositories
       FROM vaultkeeps vltkps
       JOIN keeps kps ON vltkps.keepId = kps.id
       JOIN vaults vlts ON vltkps.vaultId = vlts.id
-      JOIN accounts creator ON vlts.creatorId = creator.id
+      JOIN accounts creator ON kps.creatorId = creator.id
       WHERE vltkps.vaultId = @vaultId;
       ";
       List<VaultedKeep> vaultedKeeps = _db.Query<VaultedKeep, VaultKeep, Vault, Profile, VaultedKeep>(sql, (vaultedKeep, vaultedkeep, vault, profile) =>

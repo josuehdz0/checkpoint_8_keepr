@@ -39,6 +39,7 @@
 
     </div>
   </div>
+
   <Modal id="exampleModal">
     <ThisKeep />
   </Modal>
@@ -54,20 +55,20 @@ import { vaultsService } from "../services/VaultsService.js";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
 import { vaultKeepsService } from "../services/VaultKeepsService.js";
+import ThisKeep from "../components/ThisKeep.vue";
 
 export default {
   setup() {
-    const route = useRoute()
-    const router = useRouter()
-
-
+    const route = useRoute();
+    const router = useRouter();
     async function getActiveVault() {
       try {
-        await vaultsService.setActiveVault(route.params.vaultId)
-      } catch (error) {
-        logger.error(error)
-        Pop.error(error.message)
-        router.push({ name: 'Home' })
+        await vaultsService.setActiveVault(route.params.vaultId);
+      }
+      catch (error) {
+        logger.error(error);
+        Pop.error(error.message);
+        router.push({ name: "Home" });
       }
     }
     // async function getVaultKeepsByProfileId() {
@@ -76,43 +77,41 @@ export default {
     //     await vaultKeepsService.getVaultKeepsByCreatorId(vaultCreatorId)
     //   } catch (error) {
     //     Pop.error(error, "Getting all VaultKeeps by Profile Id")
-
     //   }
     // }
-
     async function getKeepsByVaultId() {
       try {
-        await vaultsService.getKeepsByVaultId(route.params.vaultId)
-      } catch (error) {
-        Pop.error(error, "Getting all Keeps by Vault Id")
+        await vaultsService.getKeepsByVaultId(route.params.vaultId);
+      }
+      catch (error) {
+        Pop.error(error, "Getting all Keeps by Vault Id");
       }
     }
-
     onMounted(() => {
       getActiveVault();
       getKeepsByVaultId();
       // getVaultKeepsByProfileId()
-    })
+    });
     return {
       vault: computed(() => AppState.vault),
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
       vaulKeeps: computed(() => AppState.vaultKeeps),
-
       async deleteVault(vaultId) {
         try {
-          if (await Pop.confirm('You sure you want to delete this Vault')) {
-            await vaultsService.deleteVault(vaultId)
-            router.push({ name: 'Profile', params: { profileId: this.account.id } })
-
+          if (await Pop.confirm("You sure you want to delete this Vault")) {
+            await vaultsService.deleteVault(vaultId);
+            router.push({ name: "Profile", params: { profileId: this.account.id } });
           }
-        } catch (error) {
-          logger.error(error)
-          Pop.error(error.message)
+        }
+        catch (error) {
+          logger.error(error);
+          Pop.error(error.message);
         }
       }
-    }
-  }
+    };
+  },
+  components: { ThisKeep }
 }
 </script>
 

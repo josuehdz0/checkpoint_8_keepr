@@ -16,10 +16,12 @@
 <script>
 import Pop from "../utils/Pop.js";
 import { keepsService } from "../services/KeepsService.js";
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { AppState } from "../AppState.js";
 import { computed } from "@vue/reactivity";
 import ThisKeep from "../components/ThisKeep.vue";
+import { profilesService } from "../services/ProfilesService.js";
+import { vaultsService } from "../services/VaulltsService.js";
 
 export default {
   setup() {
@@ -31,8 +33,23 @@ export default {
         Pop.error(error, "getting all keeps");
       }
     }
+
+    async function getMyVaults() {
+      try {
+        await profilesService.getVaultsByCreatorId(AppState.account.id)
+      } catch (error) {
+        Pop.error(error, "Getting my Vaults")
+      }
+    }
+
     onMounted(() => {
       getAllKeeps();
+      getMyVaults();
+    });
+    onUnmounted(() => {
+      profilesService.clearProfile();
+      keepsService.clearKeeps();
+      vaultsService.clearVaults();
     });
     return {
       keeps: computed(() => AppState.keeps)

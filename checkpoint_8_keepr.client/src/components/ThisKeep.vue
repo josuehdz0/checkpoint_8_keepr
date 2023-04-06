@@ -35,13 +35,24 @@
           </div>
 
           <div class="row justify-content-evenly">
-            <div class="col-5 d-flex align-items-center ps-2 pe-0">My Vaults
-              <button class="btn"> Save</button>
+            <div v-if="account.id" class="col-5 d-flex align-items-center ps-2 pe-0">
+              <div class="btn-group ">
+                <button class="btn btn-sm btn-secondary-outline dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  My Vaults
+                </button>
+                <ul class="dropdown-menu">
+                  <li v-for="v in vaults" :key="v.id">
+                    <a class="dropdown-item" href="#">{{ v.name }}
+                      <h v-if="v.isPrivate" class="mdi mdi-lock"></h>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-sm"> Save</button>
               <button v-if="keep.creatorId == account.id" class="btn d-flex align-items-center"
                 @click="deleteKeep(keep.id)">
-
                 <div class="mdi mdi-trash-can fs-2 text-danger"></div>
-
               </button>
             </div>
             <div class="col-4  d-flex align-items-center p-0">
@@ -75,16 +86,32 @@ import { keepsService } from "../services/KeepsService.js";
 import { logger } from "../utils/Logger.js";
 import { useRoute, useRouter } from "vue-router";
 import { Modal } from "bootstrap";
+import { profilesService } from "../services/ProfilesService.js";
+import { onMounted } from "vue";
 // import bootstrap from "bootstrap";
 
 export default {
   setup() {
     const router = useRouter();
+    const account = AppState.account;
+
+    async function getMyVaults() {
+      try {
+        await profilesService.getVaultsByCreatorId(account.id)
+      } catch (error) {
+        Pop.error(error, "Getting my Vaults")
+      }
+    }
+
+    onMounted(() => {
+      getMyVaults();
+    })
 
 
     return {
       keep: computed(() => AppState.keep),
       account: computed(() => AppState.account),
+      vaults: computed(() => AppState.vaults),
 
       async deleteKeep(keepId) {
         try {
@@ -99,6 +126,8 @@ export default {
           Pop.error(error.message)
         }
       }
+
+
     }
   }
 }
@@ -118,8 +147,8 @@ export default {
 }
 
 .profile-picture {
-  height: 10vh;
-  width: 10vh;
+  height: 8vh;
+  width: 8vh;
   border-radius: 50%;
   object-fit: cover;
   // box-shadow: 2px 2px 4px black;

@@ -74,6 +74,8 @@ import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import ThisKeep from "../components/ThisKeep.vue";
 import VaultCard from "../components/VaultCard.vue";
+import { vaultsService } from "../services/VaulltsService.js";
+import { keepsService } from "../services/KeepsService.js";
 
 
 export default {
@@ -113,9 +115,11 @@ export default {
       getVaultsByProfileId();
     });
 
-    onUnmounted(() => {
-      profilesService.clearProfile();
-    })
+    // onUnmounted(() => {
+    //   profilesService.clearProfile();
+    //   keepsService.clearKeeps();
+    //   vaultsService.clearVaults();
+    // });
     return {
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),

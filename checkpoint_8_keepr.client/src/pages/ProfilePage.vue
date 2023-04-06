@@ -3,10 +3,14 @@
     <!-- NOTE Profile Page -->
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="row">
+        <div class="row mt-0 mt-md-4">
           <img
             :src="profile.coverImg ? profile.coverImg : 'https://pbs.twimg.com/media/Fhh5tFcXkAcwX4f?format=jpg&name=900x900'"
-            alt="Cover Img" class="img-fluid rounded coverimg p-0">
+            alt="Cover Img" class="img-fluid rounded coverimg p-0 d-none d-md-flex">
+
+          <img
+            :src="profile.coverImg ? profile.coverImg : 'https://pbs.twimg.com/media/Fhh5tFcXkAcwX4f?format=jpg&name=900x900'"
+            alt="Cover Img" class="img-fluid  coverimg p-0 d-md-none ">
 
         </div>
         <!-- NOTE  Profile info that translates over coverimg-->

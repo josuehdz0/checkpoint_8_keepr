@@ -30,6 +30,12 @@ class ProfilesService{
     AppState.vaults = res.data.map(v => new Vault(v))
   }
 
+  async editProfile(profileData){
+    const res = await api.put('/account', profileData)
+    logger.log(res.data, 'editing this profile')
+    AppState.account = res.data
+  }
+
 }
 
 export const profilesService = new ProfilesService()

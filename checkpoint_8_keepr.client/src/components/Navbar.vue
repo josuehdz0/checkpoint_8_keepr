@@ -87,6 +87,7 @@ a:hover {
 
 .smallshadow {
   box-shadow: 1rem 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+
 }
 
 /* .nav-link {
@@ -99,11 +100,15 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
+nav {
+  height: 64px;
+}
+
 
 
 @media screen and (min-width: 768px) {
   nav {
-    height: 64px;
+    height: 85px;
   }
 }
 </style>

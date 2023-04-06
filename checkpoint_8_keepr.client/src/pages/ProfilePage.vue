@@ -113,9 +113,9 @@ export default {
       getVaultsByProfileId();
     });
 
-    // onUnmounted(() => {
-    //   profilesService.clearProfile();
-    // })
+    onUnmounted(() => {
+      profilesService.clearProfile();
+    })
     return {
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),

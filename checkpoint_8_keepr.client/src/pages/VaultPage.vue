@@ -53,6 +53,7 @@ import Pop from "../utils/Pop.js";
 import { vaultsService } from "../services/VaultsService.js";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
+import { vaultKeepsService } from "../services/VaultKeepsService.js";
 
 export default {
   setup() {
@@ -69,6 +70,15 @@ export default {
         router.push({ name: 'Home' })
       }
     }
+    // async function getVaultKeepsByProfileId() {
+    //   try {
+    //     const vaultCreatorId = AppState.vault.creatorId
+    //     await vaultKeepsService.getVaultKeepsByCreatorId(vaultCreatorId)
+    //   } catch (error) {
+    //     Pop.error(error, "Getting all VaultKeeps by Profile Id")
+
+    //   }
+    // }
 
     async function getKeepsByVaultId() {
       try {
@@ -81,11 +91,13 @@ export default {
     onMounted(() => {
       getActiveVault();
       getKeepsByVaultId();
+      // getVaultKeepsByProfileId()
     })
     return {
       vault: computed(() => AppState.vault),
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
+      vaulKeeps: computed(() => AppState.vaultKeeps),
 
       async deleteVault(vaultId) {
         try {

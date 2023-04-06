@@ -1,6 +1,6 @@
 export class Keep {
 
-  constructor(data){
+  constructor(data) {
     this.id = data.id
     this.creatorId = data.creatorId
     this.name = data.name
@@ -9,5 +9,7 @@ export class Keep {
     this.views = data.views
     this.kept = data.kept
     this.creator = data.creator
+    this.vaultKeepId = data.vaultKeepId
+
   }
 }

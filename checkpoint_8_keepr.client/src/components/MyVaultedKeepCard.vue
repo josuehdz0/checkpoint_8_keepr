@@ -8,9 +8,8 @@
 
       <div class="innershadow bottom-center">
       </div>
-      <h5 class="p-2 m-0 text-light bottom-left">{{ keep.name }}</h5>
-
-      <img :src="keep.creator.picture" alt=" photo" height="" class="profile-picture p-2 bottom-right d-none d-md-flex" />
+      <h4 class="p-2 m-0 text-light bottom-left">{{ keep.name }}</h4>
+      <img :src="keep.creator.picture" alt=" photo" height="50" class="profile-picture p-2 bottom-right" />
 
 
 
@@ -70,8 +69,8 @@ export default {
 }
 
 .profile-picture {
-  height: 5vh;
-  width: 5vh;
+  height: 6vh;
+  width: 6vh;
   border-radius: 50%;
   object-fit: cover;
   // box-shadow: 2px 2px 4px black;

@@ -34,38 +34,46 @@
             </p>
           </div>
 
-          <div class="row justify-content-evenly">
-            <div v-if="account.id" class="col-7 d-flex align-items-center ps-2 pe-0">
+          <div class="row justify-content-end">
+            <div v-if="account.id" class="col-6 d-flex align-items-center ps-2 pe-0">
+
+              <div v-if="keep.vaultKeepId && vault.creatorId == account.id" class="ms-2">
+                <button @click="removeKeep(keep.vaultKeepId)" class="btn btn-warning">
+                  Remove
+                  <i class="mdi mdi-bookmark-remove-outline"></i>
+                </button>
+              </div>
+
+              <div v-else>
+                <form @submit.prevent="handleSubmit(keep.id)" class="d-flex align-items-center">
+                  <div class="">
+                    <select class="form-select form-select-sm" id="vaultSelect" required v-model="editable.vaultId">
+                      <option value="" selected disabled>My Vaults</option>
+                      <option v-for="vault in vaults" :key="vault.id" :value="vault.id">
+                        {{ vault.name }}
+                        <span v-if="vault.isPrivate" class="mdi mdi-lock"> 🔒</span>
+                      </option>
+                    </select>
+                  </div>
+                  <div class="d-flex align-items-center">
+
+                    <button type="submit" class="btn btn-small ">Save</button>
+                  </div>
+                </form>
+              </div>
 
 
-              <form @submit.prevent="handleSubmit(keep.id)" class="d-flex align-items-center">
-                <div class="">
-                  <!-- <label for="vaultSelect" class="form-label">Select a Vault</label> -->
-                  <select class="form-select form-select-sm" id="vaultSelect" v-model="selectedVault">
-                    <!-- <option disabled value="">Please select one</option> -->
-                    <option value="" selected disabled>My Vaults</option>
-                    <option v-for="vault in vaults" :key="vault.id" :value="vault.id">
-                      {{ vault.name }}
-                      <span v-if="vault.isPrivate" class="mdi mdi-lock"> 🔒</span>
-                    </option>
-                  </select>
-                </div>
-                <div class="d-flex align-items-center">
-
-                  <button type="submit" class="btn btn-small ">Save</button>
-                </div>
-              </form>
 
 
+            </div>
+
+
+            <div class="col-6 d-flex justify-content-end align-items-center pe-1 pb-1">
               <button v-if="keep.creatorId == account.id" class="btn btn-sm d-flex align-items-center "
                 @click="deleteKeep(keep.id)">
                 <div class="mdi mdi-trash-can fs-5 text-danger "></div>
               </button>
-            </div>
-
-
-            <div class="col-4 d-flex justify-content-end align-items-center pe-1 pb-1">
-              <b>
+              <b class="text-truncate">
 
                 {{ keep.creator.name }}
               </b>
@@ -111,9 +119,12 @@ export default {
 
 
     return {
+      editable,
       keep: computed(() => AppState.keep),
       account: computed(() => AppState.account),
       vaults: computed(() => AppState.vaults),
+      vaultKeeps: computed(() => AppState.vaultKeeps),
+      vault: computed(() => AppState.vault),
 
       async deleteKeep(keepId) {
         try {
@@ -129,11 +140,31 @@ export default {
         }
       },
 
+      async removeKeep(vaultKeepId) {
+        try {
+          if (await Pop.confirm('You sure you want to remove this Keep from your Vault?')) {
+            await vaultKeepsService.deleteVaultKeep(vaultKeepId)
+            Modal.getOrCreateInstance('#exampleModal').hide()
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      },
+
       async handleSubmit(keepId) {
         try {
-          await vaultKeepsService.createVaultKeep(editable.value, keepId)
+          const vaultId = editable.value.vaultId
+          const vaultKeepBody = { vaultId, keepId }
+          await vaultKeepsService.createVaultKeep(vaultKeepBody)
+          logger.log("VaultId", vaultId, "and KeepId", keepId)
+          Modal.getOrCreateInstance('#exampleModal').hide()
+          router.push({ name: 'Vault', params: { vaultId: vaultId } })
           editable.value = {}
+
+
         } catch (error) {
+          Pop.error(error, "Creating Vaultkeep")
 
         }
       }

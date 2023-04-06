@@ -115,11 +115,11 @@ export default {
       getVaultsByProfileId();
     });
 
-    // onUnmounted(() => {
-    //   profilesService.clearProfile();
-    //   keepsService.clearKeeps();
-    //   vaultsService.clearVaults();
-    // });
+    onUnmounted(() => {
+      profilesService.clearProfile();
+      keepsService.clearKeeps();
+      vaultsService.clearVaults();
+    });
     return {
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),

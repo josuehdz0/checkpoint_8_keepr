@@ -50,7 +50,7 @@
                 </ul>
               </div>
               <button class="btn btn-sm"> Save</button>
-              <button v-if="keep.creatorId == account.id" class="btn d-flex align-items-center"
+              <button v-if="keep.creatorId == account.id" class="btn btn-sm d-flex align-items-center"
                 @click="deleteKeep(keep.id)">
                 <div class="mdi mdi-trash-can fs-2 text-danger"></div>
               </button>
@@ -93,19 +93,9 @@ import { onMounted } from "vue";
 export default {
   setup() {
     const router = useRouter();
-    const account = AppState.account;
 
-    async function getMyVaults() {
-      try {
-        await profilesService.getVaultsByCreatorId(account.id)
-      } catch (error) {
-        Pop.error(error, "Getting my Vaults")
-      }
-    }
 
-    onMounted(() => {
-      getMyVaults();
-    })
+
 
 
     return {

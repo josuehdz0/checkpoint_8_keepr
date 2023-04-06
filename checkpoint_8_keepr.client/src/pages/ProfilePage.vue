@@ -74,7 +74,7 @@ import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import ThisKeep from "../components/ThisKeep.vue";
 import VaultCard from "../components/VaultCard.vue";
-import { vaultsService } from "../services/VaulltsService.js";
+import { vaultsService } from "../services/VaultsService.js";
 import { keepsService } from "../services/KeepsService.js";
 
 

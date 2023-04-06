@@ -21,7 +21,7 @@ import { AppState } from "../AppState.js";
 import { computed } from "@vue/reactivity";
 import ThisKeep from "../components/ThisKeep.vue";
 import { profilesService } from "../services/ProfilesService.js";
-import { vaultsService } from "../services/VaulltsService.js";
+import { vaultsService } from "../services/VaultsService.js";
 
 export default {
   setup() {

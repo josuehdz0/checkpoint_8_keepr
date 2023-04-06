@@ -35,38 +35,45 @@
           </div>
 
           <div class="row justify-content-evenly">
-            <div v-if="account.id" class="col-5 d-flex align-items-center ps-2 pe-0">
-              <div class="btn-group ">
-                <button class="btn btn-sm btn-secondary-outline dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  My Vaults
-                </button>
-                <ul class="dropdown-menu">
-                  <li v-for="v in vaults" :key="v.id">
-                    <a class="dropdown-item" href="#">{{ v.name }}
-                      <h v-if="v.isPrivate" class="mdi mdi-lock"></h>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <button class="btn btn-sm"> Save</button>
-              <button v-if="keep.creatorId == account.id" class="btn btn-sm d-flex align-items-center"
+            <div v-if="account.id" class="col-7 d-flex align-items-center ps-2 pe-0">
+
+
+              <form @submit.prevent="handleSubmit(keep.id)" class="d-flex align-items-center">
+                <div class="">
+                  <!-- <label for="vaultSelect" class="form-label">Select a Vault</label> -->
+                  <select class="form-select form-select-sm" id="vaultSelect" v-model="selectedVault">
+                    <!-- <option disabled value="">Please select one</option> -->
+                    <option value="" selected disabled>My Vaults</option>
+                    <option v-for="vault in vaults" :key="vault.id" :value="vault.id">
+                      {{ vault.name }}
+                      <span v-if="vault.isPrivate" class="mdi mdi-lock"> 🔒</span>
+                    </option>
+                  </select>
+                </div>
+                <div class="d-flex align-items-center">
+
+                  <button type="submit" class="btn btn-small ">Save</button>
+                </div>
+              </form>
+
+
+              <button v-if="keep.creatorId == account.id" class="btn btn-sm d-flex align-items-center "
                 @click="deleteKeep(keep.id)">
-                <div class="mdi mdi-trash-can fs-2 text-danger"></div>
+                <div class="mdi mdi-trash-can fs-5 text-danger "></div>
               </button>
             </div>
-            <div class="col-4  d-flex align-items-center  justify-content-center p-0">
+
+
+            <div class="col-4 d-flex justify-content-end align-items-center pe-1 pb-1">
               <b>
 
                 {{ keep.creator.name }}
               </b>
-            </div>
-
-            <div class="col-2 d-flex justify-content-end pe-1 pb-1">
               <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
                 <img :src="keep.creator.picture" alt=" photo" height="50" class="profile-picture p-2"
                   data-bs-dismiss="modal" />
               </router-link>
+
             </div>
           </div>
 
@@ -89,13 +96,15 @@ import { keepsService } from "../services/KeepsService.js";
 import { logger } from "../utils/Logger.js";
 import { useRoute, useRouter } from "vue-router";
 import { Modal } from "bootstrap";
+import { vaultKeepsService } from "../services/VaultKeepsService.js";
 import { profilesService } from "../services/ProfilesService.js";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 // import bootstrap from "bootstrap";
 
 export default {
   setup() {
     const router = useRouter();
+    const editable = ref({});
 
 
 
@@ -117,6 +126,15 @@ export default {
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)
+        }
+      },
+
+      async handleSubmit(keepId) {
+        try {
+          await vaultKeepsService.createVaultKeep(editable.value, keepId)
+          editable.value = {}
+        } catch (error) {
+
         }
       }
 

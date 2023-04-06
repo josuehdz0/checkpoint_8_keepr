@@ -50,7 +50,7 @@ import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
-import { vaultsService } from "../services/VaulltsService.js";
+import { vaultsService } from "../services/VaultsService.js";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
 

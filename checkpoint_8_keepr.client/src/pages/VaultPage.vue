@@ -14,6 +14,13 @@
           {{ vault.creator.name }}
         </div>
       </div>
+      <div v-if="vault.creatorId == account.id" class="col-md-7 d-flex justify-content-end me-md-5">
+        <button @click="deleteVault(vault.id)" class="btn">
+          <h3 class="mdi mdi-trash-can text-danger"></h3>
+        </button>
+      </div>
+
+
       <div class="col-md-10 col-11">
 
         <div class="row pt-2">
@@ -29,6 +36,7 @@
         </div>
 
       </div>
+
     </div>
   </div>
   <Modal id="exampleModal">
@@ -78,6 +86,19 @@ export default {
       vault: computed(() => AppState.vault),
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
+
+      async deleteVault(vaultId) {
+        try {
+          if (await Pop.confirm('You sure you want to delete this Vault')) {
+            await vaultsService.deleteVault(vaultId)
+            router.push({ name: 'Profile', params: { profileId: this.account.id } })
+
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      }
     }
   }
 }

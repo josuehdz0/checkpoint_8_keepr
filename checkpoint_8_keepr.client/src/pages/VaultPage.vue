@@ -27,7 +27,7 @@
           <h2> {{ keeps.length }} Keeps </h2>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center pb-3">
           <section class="bricks ">
             <div v-for="k in keeps">
               <KeepCard :keep="k" />

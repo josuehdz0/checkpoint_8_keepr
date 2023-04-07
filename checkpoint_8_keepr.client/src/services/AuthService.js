@@ -6,6 +6,7 @@ import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { socketService } from './SocketService'
 import { profilesService } from "./ProfilesService.js"
+import { vaultsService } from "./VaultsService.js"
 
 export const AuthService = initialize({
   domain,
@@ -29,6 +30,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   socketService.authenticate(AuthService.bearer)
   // NOTE if there is something you want to do once the user is authenticated, place that here
   await profilesService.getVaultsByCreatorId(AppState.account.id)
+  await profilesService.getVaultsByAccountId(AppState.account.id)
 })
 
 async function refreshAuthToken(config) {

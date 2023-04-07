@@ -10,7 +10,7 @@
             aria-label="Close"></button>
         </div>
         <div class="col-md-6 p-0 d-none d-md-flex">
-          <img :src="keep.img" :alt="keep.name" class="img-fluid rounded-start">
+          <img :src="keep.img" :alt="keep.name" class="img-fluid rounded-start photo">
         </div>
         <!-- NOTE Keep info -->
         <div class="col-md-6 d-flex flex-column justify-content-between infosize">
@@ -49,7 +49,7 @@
                   <div class="">
                     <select class="form-select form-select-sm" id="vaultSelect" required v-model="editable.vaultId">
                       <option value="" selected disabled>My Vaults</option>
-                      <option v-for="vault in vaults" :key="vault.id" :value="vault.id">
+                      <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">
                         {{ vault.name }}
                         <span v-if="vault.isPrivate" class="mdi mdi-lock"> 🔒</span>
                       </option>
@@ -123,6 +123,7 @@ export default {
       keep: computed(() => AppState.keep),
       account: computed(() => AppState.account),
       vaults: computed(() => AppState.vaults),
+      myVaults: computed(() => AppState.myVaults),
       vaultKeeps: computed(() => AppState.vaultKeeps),
       vault: computed(() => AppState.vault),
 
@@ -178,6 +179,8 @@ export default {
 
 <style lang="scss" scoped>
 .photo {
+  height: auto;
+  width: 100%;
   position: relative;
   text-align: center;
   color: white;

@@ -16,7 +16,7 @@
 <script>
 import Pop from "../utils/Pop.js";
 import { keepsService } from "../services/KeepsService.js";
-import { onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, watchEffect } from "vue";
 import { AppState } from "../AppState.js";
 import { computed } from "@vue/reactivity";
 import ThisKeep from "../components/ThisKeep.vue";
@@ -36,7 +36,7 @@ export default {
 
     async function getMyVaults() {
       try {
-        await profilesService.getVaultsByCreatorId(AppState.account.id)
+        await profilesService.getVaultsByAccountId(AppState.account.id)
       } catch (error) {
         Pop.error(error, "Getting my Vaults")
       }
@@ -44,8 +44,11 @@ export default {
 
     onMounted(() => {
       getAllKeeps();
-      getMyVaults();
+      // NOTE vvv this is in my AuthService, runs everytime somebody logs in.
+      // getMyVaults();
+
     });
+
     onUnmounted(() => {
       profilesService.clearProfile();
       keepsService.clearKeeps();

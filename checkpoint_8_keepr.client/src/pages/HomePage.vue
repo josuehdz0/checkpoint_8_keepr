@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div class="row mb-5 pb-5 pb-md-3 mb-md-0">
       <section class="bricks">
         <div v-for="k in keeps">
           <KeepCard :keep="k" />

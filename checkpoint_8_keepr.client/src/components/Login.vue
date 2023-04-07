@@ -1,8 +1,9 @@
 <template>
   <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
-      v-if="!user.isAuthenticated">
-      Login
+    <button class="btn selectable  lighten-30 text-uppercase my-2 my-lg-0" @click="login" v-if="!user.isAuthenticated">
+      <h5>
+        Login
+      </h5>
     </button>
     <div v-else>
       <!-- NOTE nav when desktop -->

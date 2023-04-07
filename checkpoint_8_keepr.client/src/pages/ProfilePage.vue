@@ -47,7 +47,7 @@
         </div>
 
         <!-- NOTE Here are the Profiles Keeps -->
-        <div class="row pb-3">
+        <div class="row mb-5 pb-5 pb-md-3 mb-md-0">
           <section class="bricks">
             <div v-for="k in keeps">
               <KeepCard :keep="k" />

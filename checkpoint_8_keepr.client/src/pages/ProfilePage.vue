@@ -47,7 +47,7 @@
         </div>
 
         <!-- NOTE Here are the Profiles Keeps -->
-        <div class="row">
+        <div class="row pb-3">
           <section class="bricks">
             <div v-for="k in keeps">
               <KeepCard :keep="k" />
@@ -84,7 +84,7 @@ export default {
     async function getProfileById() {
       try {
         const profileId = route.params.profileId;
-        logger.log("here is the profile id", profileId);
+        // logger.log("here is the profile id", profileId);
         await profilesService.getProfileById(profileId);
       }
       catch (error) {

@@ -10,7 +10,7 @@ class ProfilesService {
 
   async getProfileById(profileId) {
     const res = await api.get('api/profiles/' + profileId)
-    logger.log('getting profile', res.data)
+    // logger.log('getting profile', res.data)
     AppState.profile = new Profile(res.data)
   }
 
@@ -26,19 +26,19 @@ class ProfilesService {
 
   async getVaultsByCreatorId(creatorId) {
     const res = await api.get(`api/profiles/${creatorId}/vaults`)
-    logger.log("Vaults by Creator Id", res.data)
+    // logger.log("Vaults by Creator Id", res.data)
     AppState.vaults = res.data.map(v => new Vault(v))
   }
 
   async getVaultsByAccountId(creatorId) {
     const res = await api.get(`api/profiles/${creatorId}/vaults`)
-    logger.log("Vaults by Creator Id", res.data)
+    // logger.log("Vaults by Creator Id", res.data)
     AppState.myVaults = res.data.map(v => new Vault(v))
   }
 
   async editProfile(profileData) {
     const res = await api.put('/account', profileData)
-    logger.log(res.data, 'editing this profile')
+    // logger.log(res.data, 'editing this profile')
     AppState.account = res.data
   }
 

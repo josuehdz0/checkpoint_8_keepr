@@ -158,7 +158,8 @@ export default {
           const vaultId = editable.value.vaultId
           const vaultKeepBody = { vaultId, keepId }
           await vaultKeepsService.createVaultKeep(vaultKeepBody)
-          logger.log("VaultId", vaultId, "and KeepId", keepId)
+          // NOTE log checking to see if parameters are formated correctly
+          // logger.log("VaultId", vaultId, "and KeepId", keepId)
           Modal.getOrCreateInstance('#exampleModal').hide()
           router.push({ name: 'Vault', params: { vaultId: vaultId } })
           editable.value = {}

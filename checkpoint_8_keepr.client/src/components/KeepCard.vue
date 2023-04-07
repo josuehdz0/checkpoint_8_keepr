@@ -1,5 +1,6 @@
 <template>
-  <div @click="setActiveKeep()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="selectable">
+  <div @click="setActiveKeep()" data-bs-toggle="modal" data-bs-target="#exampleModal" :title="keep.name"
+    class="selectable">
 
     <div class="component bg-white rounded shadow-sm">
       <!-- <router-link :to="{ name: 'RestaurantDetails', params: { restaurantId: restaurant.id } }"> -->
@@ -10,7 +11,8 @@
       </div>
       <h5 class="p-2 m-0 text-light bottom-left">{{ keep.name }}</h5>
 
-      <img :src="keep.creator.picture" alt=" photo" height="" class="profile-picture p-2 bottom-right d-none d-md-flex" />
+      <img :title="keep.creator.name" :src="keep.creator.picture" alt=" photo" height=""
+        class="profile-picture p-2 bottom-right d-none d-md-flex" />
 
 
 

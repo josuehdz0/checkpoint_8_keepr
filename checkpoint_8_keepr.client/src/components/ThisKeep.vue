@@ -17,11 +17,11 @@
 
           <div class="row justify-content-center text-center pt-3">
             <div class="col-3">
-              <div class="mdi mdi-eye-outline"> {{ keep.views }}</div>
+              <div class="mdi mdi-eye-outline" title="View Count"> {{ keep.views }}</div>
 
             </div>
             <div class="col-3">
-              <div class="mdi mdi-alpha-k-circle-outline">{{ keep.kept }}</div>
+              <div class="mdi mdi-alpha-k-circle-outline" title="Kept Count">{{ keep.kept }}</div>
 
             </div>
           </div>
@@ -71,7 +71,7 @@
             <div class="col-6 d-flex justify-content-end align-items-center pe-1 pb-1">
               <button v-if="keep.creatorId == account.id" class="btn btn-sm d-flex align-items-center "
                 @click="deleteKeep(keep.id)">
-                <div class="mdi mdi-trash-can fs-5 text-danger "></div>
+                <div title="Delete Keep" class="mdi mdi-trash-can fs-5 text-danger "></div>
               </button>
               <b class="text-truncate">
 

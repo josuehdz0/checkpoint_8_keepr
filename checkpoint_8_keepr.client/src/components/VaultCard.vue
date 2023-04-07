@@ -8,7 +8,7 @@
           {{ vault.name }}
         </h3>
         <h2 v-if="vault.isPrivate" class="">
-          <div class="mdi mdi-lock vaulttext"></div>
+          <div title="Private Vault" class="mdi mdi-lock vaulttext"></div>
         </h2>
       </div>
 

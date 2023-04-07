@@ -7,7 +7,7 @@
             {{ vault.name }}
           </h3>
           <h2 v-if="vault.isPrivate" class="">
-            <div class="mdi mdi-lock vaulttext"></div>
+            <div title="Private Vault" class="mdi mdi-lock vaulttext"></div>
           </h2>
         </div>
         <div class="vaulttext text-container d-flex justify-content-center align-items-baseline pb-2 mb-1">
@@ -16,7 +16,7 @@
       </div>
       <div v-if="vault.creatorId == account.id" class="col-md-7 d-flex justify-content-end me-md-5">
         <button @click="deleteVault(vault.id)" class="btn">
-          <h3 class="mdi mdi-trash-can text-danger"></h3>
+          <h3 title="Delete Vault" class="mdi mdi-trash-can text-danger"></h3>
         </button>
       </div>
 

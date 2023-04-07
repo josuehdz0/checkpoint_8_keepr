@@ -5,7 +5,7 @@
       <div class="d-flex align-items-center ">
         <router-link :to="{ name: 'Home' }">
           <h5 class="my-0 ps-1 d-none d-md-flex">Home</h5>
-          <h1 class="mdi mdi-home d-md-none text-dark"></h1>
+          <h1 title="Home" class="mdi mdi-home d-md-none text-dark"></h1>
         </router-link>
         <div class=" btn-group dropend">
 

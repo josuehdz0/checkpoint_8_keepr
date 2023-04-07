@@ -1,5 +1,5 @@
 <template>
-  <div @click="setActiveKeep()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <div @click="setActiveKeep()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="selectable">
 
     <div class="component bg-white rounded shadow-sm">
       <!-- <router-link :to="{ name: 'RestaurantDetails', params: { restaurantId: restaurant.id } }"> -->

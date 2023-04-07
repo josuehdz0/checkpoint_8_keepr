@@ -1,11 +1,11 @@
 <template>
   <nav
     class="navbar navbar-expand-lg navbar-light bg-light px-3 smallshadow d-flex justify-content-between py-0 fixed-bottom sticky-md-top">
-    <div class="navbar-brand d-flex">
+    <div class="navbar-brand d-flex ">
       <div class="d-flex align-items-center ">
         <router-link :to="{ name: 'Home' }">
           <h5 class="my-0 ps-1 d-none d-md-flex">Home</h5>
-          <h1 class="mdi mdi-alpha-k-circle-outline d-md-none "></h1>
+          <h1 class="mdi mdi-home d-md-none text-dark"></h1>
         </router-link>
         <div class=" btn-group dropend">
 
@@ -100,7 +100,7 @@ a:hover {
 }
 
 nav {
-  height: 64px;
+  height: 80px;
 }
 
 

@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: 'Vault', params: { vaultId: vault.id } }">
-    <div class="component rounded vaultimg " :style="{ backgroundImage: `url(${vault.img})` }">
+    <div :title="vault.name" class="component rounded vaultimg " :style="{ backgroundImage: `url(${vault.img})` }">
 
 
       <div class="text-container d-flex justify-content-between align-items-baseline my-0">

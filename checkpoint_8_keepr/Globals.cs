@@ -10,7 +10,6 @@ global using System.Threading.Tasks;
 global using Dapper;
 global using CodeWorks.Utils;
 
-// APPLICATION SPECIFIC
 global using checkpoint_8_keepr.Repositories;
 global using checkpoint_8_keepr.Services;
 global using checkpoint_8_keepr.Models;
